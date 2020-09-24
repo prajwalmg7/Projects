@@ -1,0 +1,539 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Lacquer|Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
+</head>
+<body >
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-auth.js"></script>
+    <!-------------Header -------------->
+
+       <section class="h-100">
+            <nav class="navbar navbar-expand-lg bg-dark text-white">
+                 <nav class="navbar navbar-light ">
+                <a class="navbar-brand" href="signin.html"><img src="photo.png" style="width: 100px; margin-left: 30px;"></a>
+                </nav>
+                <div class="container-fluid">
+                    <u1 class="nav navbar-nav">
+                       
+                        <li>
+                            <a class="nav-link" style="color: whitesmoke; text-decoration: wavy;" href="MainPage.html">
+                                <span style="color: white;">Home</span>
+                            </a>
+                                
+                        </li>
+                        <li>
+                            <a class="nav-link" style="color: whitesmoke; text-decoration: wavy;" href="#">
+                                <span style="color: white;">Inbox</span>
+                            </a>
+                        </li>
+                        <a class="nav-link" style="color: whitesmoke; text-decoration: wavy;" href="AddressBook.html">
+                            <span style="color: white;">Address Book</span>
+                        </a>
+                        <a class="nav-link" style="color: whitesmoke; text-decoration: wavy;" href="profilenew.html">
+                            <span style="color: white;">Profile</span>
+                        </a>
+                    </u1>
+
+                    <div class="dropdown navbar-right">
+                        <button 
+                        id="option-id"
+                        class="btn btn-light dropdown-toggle bg-dark text-white"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >
+                            Options
+                        </button>
+                        <div
+                        class="dropdown-menu"
+                        aria-labelledby="option-id"
+                        >
+                        <a class="dropdown-item" id ="btn-logout" href="signin.html" onclick="logout()">
+                            Logout
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </nav>
+
+      <div  class="mainback" >
+        
+      <div class="four"> 
+
+      <div class="container animate content right">
+        
+             
+              <h1 align="center">User Profile Details</h1>
+              <ul>
+                <li id="fname"></li>
+                <li id="lname"></li>
+                <li><label style="color: black" class="label">Change Password</label>
+                <input type="password" id="pass" name="address">
+                <button onclick="editpass()" style="background-color: grey;
+                                                    color: white;
+                                                    padding: 0px 10px;
+                                                    margin: 8px 0;
+                                                    border: auto;
+                                                    cursor: pointer;
+                                                    height: 5%;
+                                                    width: 20%;">change</button></li>
+                                                
+                <li id="addr"></li>
+                <li id="dob"></li>
+                <li id="gen"></li>
+                <li id="pho"></li>
+                <li id="altemail"></li>
+                <li id="Wallet"></li>
+              </ul>
+
+            
+            <button class="button1" onclick="document.getElementById('id01').style.display='block'" style="background-color: grey;
+                                                                                                            color: white;
+                                                                                                            padding: 0px 10px;
+                                                                                                            margin: 8px 0;
+                                                                                                            border: auto;
+                                                                                                            cursor: pointer;
+                                                                                                            height: 5%;
+                                                                                                            width: 20%;" >
+                                                                                                          EDIT PROFILE</button>
+
+  
+              
+              <div id="id01" class="modal">
+                    <div class="container animate" style=" background-color: #fefefe;">
+                              <form method="post" class="modal-content animate">
+                             <p align="center" style="color: black;" class="sel">USER PROFILE</p>
+
+                             <p><label style="color: black;" class="label">First Name</label>
+                             <input type="text" id="fnamec" name="fname" style="width: 30%;" maxlength="15">
+
+                             <button onclick="editfname()" class="editbtn">edit</button>
+                             </p>
+
+
+                              <p><label style="color: black" class="label">Last Name</label>
+                             <input type="text" id="lnamec" name="lname" maxlength="15">
+                             <button onclick="editlname()" class="editbtn">edit</button>
+                             </p>
+
+                             
+
+                             <p><label style="color: black" class="label">Phone</label>
+                             <input type="number" id="phoc" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0,this.maxLength);" maxlength="10" min="600000000">
+                             <button onclick="editphone()" class="editbtn">edit</button>
+                             </p>
+                            
+                             <p>
+                             <label style="color: black" class="label">D.O.B</label>
+                             <input type="date" id="dobc" name="pass">
+                             <button onclick="editdob()" class="editbtn">edit</button>
+                             </p>
+
+                             <p>
+                             <label style="color: black" class="label">Address</label>
+                             <input type="text" id="addrc" name="address" maxlength="100">
+                             <button onclick="editaddr()" class="editbtn">edit</button>
+                             </p>
+
+                             <p>
+                             <label style="color: black" class="label">Alternate Email</label>
+                             <input type="email" id="altemailc" name="address" >
+                             <button onclick="editemail()" class="editbtn" >edit</button>
+                            </p>
+
+                            <p>
+                              <label style="color: black" class="label">Gender</label>
+                              <select name="" id="genc">
+                                        <option value="" disabled selected>Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                              <button onclick="editgen()" class="editbtn">edit</button>
+                            </p>
+                   
+                </form>
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      
+                    </div>
+  
+                </div>
+              </div>
+             
+  </div> 
+  </div>
+  </div>
+  
+  </section>
+	
+<script>
+		 // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyBzjRH3KZRk_tTeJzfLDDqQBUSpB-kx0dw",
+	    authDomain: "fir-webapp-927e2.firebaseapp.com",
+	    databaseURL: "https://fir-webapp-927e2.firebaseio.com",
+	    projectId: "fir-webapp-927e2",
+	    storageBucket: "fir-webapp-927e2.appspot.com",
+	    messagingSenderId: "358202157888",
+	    appId: "1:358202157888:web:243e08f88c8d41922fa8a5",
+	    measurementId: "G-S2YBGXM32W"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  firebase.analytics();
+	</script>
+	<script type="text/javascript">
+		getData();
+		function getData() {
+        
+             var currentuser = localStorage.getItem("vOneLocalStorage"); 
+             console.log(currentuser); 
+
+		  	firebase.database().ref('/Users/'+currentuser).once('value',function(snapshot){
+		  		snapshot.forEach(function(childSnapshot){
+		  			var childKey=childSnapshot.key;
+		  			var childdata=childSnapshot.val();
+		  			document.getElementById('fname').innerHTML = "First Name : " + childdata['firstName'];
+		  			document.getElementById('lname').innerHTML = "Last Name : " + childdata['secondName'];
+		  			document.getElementById('dob').innerHTML = "DOB : " + childdata['dob'];
+		  			document.getElementById('addr').innerHTML = "Address : " + childdata['address'];
+		  			document.getElementById('gen').innerHTML = "Gender : " + childdata['gender'];
+		  			document.getElementById('pho').innerHTML = "Phone : " + childdata['phone'];
+            document.getElementById('altemail').innerHTML = "Alternate Email : " + childdata['altemail'];
+
+		  			document.getElementById('Wallet').innerHTML = "Wallet : 100000";
+
+		  			
+
+		  		})
+		  	})
+		  }
+		  function editfname()
+		  {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('fnamec').value;
+						  db.ref('/Users/'+currentuser+'/Profile').update({firstName : change});
+		  }
+		  function editlname()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('lnamec').value;
+              db.ref('/Users/'+currentuser+'/Profile').update({secondName : change});
+      }
+      function editphone()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('phoc').value;
+              db.ref('/Users/'+currentuser+'/Profile').update({phone : change});
+      }
+      function editdob()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('dobc').value;
+              db.ref('/Users/'+currentuser+'/Profile').update({dob : change});
+      }
+      function editaddr()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('addrc').value;
+              db.ref('/Users/'+currentuser+'/Profile').update({address : change});
+      }
+      function editgen()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('genc').value;
+              db.ref('/Users/'+currentuser+'/Profile').update({gender : change});
+      }
+      function editemail()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+            console.log(currentuser);
+              var db=firebase.database();
+                          var change=document.getElementById('altemailc').value;
+              db.ref('/Users/'+currentuser+'/Profile').update({altemail : change});
+      }
+       function editpass()
+      {
+              var currentuser = localStorage.getItem("vOneLocalStorage");
+              console.log(currentuser);
+              var password=document.getElementById('pass').value;
+              console.log(pass);
+              firebase.auth().currentUser.updatePassword(password).then(function()
+              {
+                window.alert("Password Changed.Please Login Again.");
+                
+              }).catch(function(error){
+                var errorCode=error.code;
+                var errorMessage=error.message;
+                console.log(errorCode);
+                console.log(errorMessage);
+                window.alert("Message :"+errorMessage);
+              })
+              logout();
+
+              
+      }
+      function logout()
+      {
+        console.log("logout");
+        firebase.auth().signOut();
+      }
+      firebase.auth().onAuthStateChanged(function(user)
+            {
+                if(!user)
+                {
+                    window.location.href="signin.html";
+
+                }
+                else
+                {
+                    var currentuser = firebase.auth().currentUser.uid;
+                    localStorage.setItem("vOneLocalStorage",currentuser);
+                    console.log(currentuser);
+                    var email = firebase.auth().currentUser.email;
+                    console.log(email);
+                }
+            });
+      
+      
+  </script>
+
+  <style>
+
+  /* Header CSS */
+  #header
+  {
+    
+    height: 0px;
+    background-size: cover;
+    background-position: center;
+  }
+
+ #header .nav-link 
+  {
+    float: right;
+    color: solid black;
+    font-weight:  bold;
+
+  }
+
+  #header .navbar-brand img
+  {
+    width: 100px;
+    margin-left: 30px;
+    
+
+  }
+  #header .navbar-toggler
+  {
+    border:none;
+    outline: none;
+
+  }
+
+#header .fa-bars
+{
+color: black;
+font-size: 26px;
+}
+
+/* Profile CSS */
+
+
+  .mainback
+{
+  overflow:hidden;
+  width: 100%;
+  height:90vh;
+  background-color: #abcabc;
+  font-family: 'Odibee Sans', ;
+  font-weight: bold;
+  font-style: initial;
+  font-size:1em;
+}
+.mainback .four
+{
+
+  width:50%;
+  margin-left: 40%;
+  margin-top: 0%;
+
+}
+
+ .four .container ul li
+              {             
+              padding: 10px;
+              border-bottom:1px solid rgba(5,0,0,5);
+              }
+
+.four .container .modal 
+{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  text-align: center;
+  padding-top: 60px;
+}
+.four .container .modal .container
+{
+  background-color: rgb(0,0,0,0.2); /* Fallback color */
+  background-color: rgba(0,0,0,0.4);
+  margin: 0% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  
+  width: 45%; /* Could be more or less, depending on screen size */
+}
+/*.four .container .modal .container ul li
+            {             
+              padding: 15px;
+              width:30%;
+              border-bottom:1px solid rgba(5,0,0,5);
+              border-top: 1px solid rgba(225,225,225,10); 
+            }
+.four .container .modal .container ul li a
+            {
+              color: black;
+              font-family: arial;
+              font-style: italic;
+            }*/
+
+  /* The Close Button (x) */
+.four .container .close {
+  position: absolute;
+  right: 25px;
+  top: 5px;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.four .container .close:hover,
+.four .container .close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.four .container .animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .four .container .cancelbtn {
+     width: 50%;
+  }
+}
+.mainback .four .container .editbtn
+{
+  background-color: blue;
+  color: white;
+  padding: 0px 10px;
+  margin: 8px 0;
+  border: auto;
+  cursor: pointer;
+  height: 5%;
+  width: 10%;
+}
+.modal .container .modal-content .editbtn
+  {
+  background-color: blue;
+  color: white;
+  padding: 0px 10px;
+  margin: 8px 0;
+  border: auto;
+  cursor: pointer;
+  height: 5%;
+  width: 10%;
+  }
+  .modal .container .cancelbtn {
+   background-color: blue;
+  color: white;
+  text-align:center;
+  padding: 0px 10px;
+  margin: 8px 0;
+  border: auto;
+  cursor: pointer;
+  height: 5%;
+  width: 10%;
+}
+  .modal .container .modal-content
+  {
+
+ background-color: #fefefe;
+  width: 100%; /* Could be more or less, depending on screen size */
+  }
+  .four .container .content
+  {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  }
+
+  .modal .container .modal-content input[type=text], input[type=password] {
+  width: 30%;
+  padding: 0px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.modal .container .modal-content .label
+  {
+  text-align: left;
+ background-color: #fefefe;
+   /* Could be more or less, depending on screen size */
+  }
+ 
+</style>
+</body>
+
+</html>
